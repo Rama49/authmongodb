@@ -25,8 +25,8 @@ const login = async (req, res, next) => {
     }
 
     const passwordMatch = await user.comparePassword(password);
-    if (!passwordMatch) {
-      return res.status(401).json({ message: 'Incorrect password' });
+    if (passwordMatch) {
+      return res.json({ message: 'connection reussie' });
     }
 
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
